@@ -27,7 +27,7 @@ describe('Geoserver Global Settings', function () {
     };
 
     geoserverjs = new GeoJS(config);
-    geoserverjs.Global.settings(function (err, res) {
+    geoserverjs.globalSettings(function (err, res) {
       if (err) throw err;
       done();
     })
@@ -56,7 +56,7 @@ describe('Geoserver Global Settings', function () {
     };
 
     geoserverjs = new GeoJS(config);
-    geoserverjs.Global.contacts(function (err, res) {
+    geoserverjs.globalContacts(function (err, res) {
       if (err) throw err;
       done();
     })

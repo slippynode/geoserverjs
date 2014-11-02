@@ -47,7 +47,7 @@ async.series(queue);
 
 function globalSettings () {
   var geoserverjs = new GeoJS(config);
-  geoserverjs.Global.settings(function (err, res) {
+  geoserverjs.globalSettings(function (err, res) {
     if (err) throw err;
     else console.log(res);
   })
@@ -55,7 +55,7 @@ function globalSettings () {
 
 function globalContacts () {
   var geoserverjs = new GeoJS(config);
-  geoserverjs.Global.contacts(function (err, res) {
+  geoserverjs.globalContacts(function (err, res) {
     if (err) throw err;
     else console.log(res);
   })
