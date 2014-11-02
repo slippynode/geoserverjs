@@ -66,6 +66,7 @@ describe('Geoserver Global Settings', function () {
     var cmd
       , data
       ;
+      
     data = JSON.stringify({"global":{
       "settings":{
         "id":"SettingsInfoImpl--6b7a8a33:142290ee3a6:-8000",
