@@ -25,7 +25,11 @@ program.on('--help', function () {
 
 program.parse(process.argv);
 
-var queue = [];
+var queue
+  , data
+  ;
+
+queue = [];
 
 try {
   var config = {
@@ -35,7 +39,7 @@ try {
     method: program.method || 'GET',
     format: program.format || 'json'
   }
-  if (program.data) config.data = JSON.stringify(program.data);
+  if (program.data) data = JSON.stringify(program.data);
 } 
 catch (err) {
   throw new Error(err);
@@ -50,7 +54,7 @@ function globalSettings () {
   geoserverjs.globalSettings(function (err, res) {
     if (err) throw err;
     else console.log(res);
-  })
+  }, data)
 }
 
 function globalContacts () {
@@ -58,7 +62,7 @@ function globalContacts () {
   geoserverjs.globalContacts(function (err, res) {
     if (err) throw err;
     else console.log(res);
-  })
+  }, data)
 }
 
 module.exports = GeoJS;
