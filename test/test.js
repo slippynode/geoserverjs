@@ -394,3 +394,7 @@ describe('Geoserver Workspace Settings', function () {
   });
 
 });
+
+describe('Geoserver Namespace Settings', function () {
+
+});
