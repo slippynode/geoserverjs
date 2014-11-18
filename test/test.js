@@ -149,3 +149,248 @@ describe('Geoserver Global Settings', function () {
   });
 
 });
+
+describe('Geoserver Workspace Settings', function () {
+
+  it('GET all workspaces from Geoserver (JS)', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspace(function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+  it('POST a new workspace to Geoserver (JS)', function (done) {
+    var geoserverjs
+      , postData
+      , config
+      ;
+
+    postData = {
+      "workspace": {
+        "name":"testPostWorkspace"
+      }
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'POST',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspace(function (err, res) {
+      if (err) throw err;
+      done();
+    }, postData);
+  });
+
+  it('GET a specific workspace from Geoserver (JS)', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspaces('testPostWorkspace', function (err, res) {
+      if (err) throw err;
+      done();
+    });
+  });
+
+  it('PUT modify specific workspace in Geoserver (JS)', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {};
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'PUT',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspaces('testPostWorkspace', function (err, res) {
+      if (err) throw err;
+      done();
+    }, data);
+  });
+
+  it('DELETE a specific workspace in Geoserver (JS)', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {
+      "recurse": true
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'DELETE',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspaces('testPostWorkspace', function (err, res) {
+      if (err) throw err;
+      done();
+    }, data);
+  });
+
+  it('GET default workspace from Geoserver (JS)', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.defaultWorkspace(function (err, res) {
+      if (err) throw err;
+      done();
+    });
+  });
+
+  it('PUT default workspace in Geoserver (JS)', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {
+      "workspace": {
+        "name": "it.geosolutions"
+      }
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'PUT',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.defaultWorkspace(function (err, res) {
+      if (err) throw err;
+      done();
+    }, data);
+  });
+
+  it('GET specific workspace settings in Geoserver (JS)', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspaceSettings('it.geosolutions', function (err, res) {
+      if (err) throw err;
+      done();
+    });
+  });
+
+  it('PUT modify workspace settings in Geoserver (JS)', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {
+      "settings": {
+        "enabled": true,
+        "contact": {
+          "contactPerson": "Tom Sawyer"
+        }
+      }
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'PUT',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspaceSettings('it.geosolutions', function (err, res) {
+      if (err) throw err;
+      done();
+    }, data);
+  });
+
+  it('DELETE workspace settings in Geoserver (JS)', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {
+      "settings": {
+        "contact": {
+          "contactPerson": "Tom Sawyer"
+        }
+      }
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'DELETE',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.workspaceSettings('it.geosolutions', function (err, res) {
+      if (err) throw err;
+      done();
+    }, data);
+  });
+
+});

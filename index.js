@@ -40,7 +40,7 @@ try {
     format: program.format || 'json'
   }
   if (program.data) data = JSON.stringify(program.data);
-} 
+}
 catch (err) {
   throw new Error(err);
 }
