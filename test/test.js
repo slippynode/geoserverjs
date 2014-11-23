@@ -396,5 +396,92 @@ describe('Geoserver Workspace Settings', function () {
 });
 
 describe('Geoserver Namespace Settings', function () {
+  it('GET a list of namespaces from Geoserver', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.namespaces(function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+  it('POST create a new namespace in Geoserver', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {
+      "namespace": {
+        "prefix": "test"
+      }
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'POST',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.namespaces(function (err, res) {
+      if (err) throw err;
+      done();
+    }, data)
+  });
+
+  it('GET a single namespace from Geoserver', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.namespace('it.geosolutions', function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+  it('GET default namespace from Geoserver', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.defaultNamespace(function (err, res) {
+      if (err) throw err;
+      console.log(res);
+      done();
+    })
+  });
 
 });
