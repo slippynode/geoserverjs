@@ -479,9 +479,59 @@ describe('Geoserver Namespace Settings', function () {
     geoserverjs = new GeoJS(config);
     geoserverjs.defaultNamespace(function (err, res) {
       if (err) throw err;
-      console.log(res);
       done();
     })
+  });
+});
+
+describe('Geoserver Data Store Settings', function () {
+
+  it('GET a list of data stores in a workspace', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.datastores('it.geosolutions', function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+  it('POST create a new data store in a workspace', function (done) {
+    var geoserverjs
+      , data
+      , config
+      ;
+
+    data = {
+      "dataStores": {
+        "dataStore": [{"name": "test"}]
+      }
+    };
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'POST',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.datastores('sf', function (err, res) {
+      if (err) throw err;
+      console.log(res);
+      done();
+    }, data)
   });
 
 });
