@@ -529,9 +529,96 @@ describe('Geoserver Data Store Settings', function () {
     geoserverjs = new GeoJS(config);
     geoserverjs.datastores('sf', function (err, res) {
       if (err) throw err;
-      console.log(res);
       done();
     }, data)
+  });
+
+});
+
+describe('Geoserver Feature Type Settings', function () {
+
+  it('GET a list of feature types from a datastore', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.featureTypes('tiger', 'nyc', function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+  it('GET a single feature type from a datastore', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.featureType('tiger', 'nyc', 'poi', function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+});
+
+describe('Geoserver Coverage Store Settings', function () {
+
+  it('GET a list of coverage stores in a workspace', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.coverageStores('sf', function (err, res) {
+      if (err) throw err;
+      done();
+    })
+  });
+
+  it('GET a single coverage store in a workspace', function (done) {
+    var geoserverjs
+      , config
+      ;
+
+    config = {
+      serviceUrl: 'http://127.0.0.1:8080/geoserver/rest',
+      username: 'admin',
+      password: 'geoserver',
+      method: 'GET',
+      format: 'json'
+    };
+
+    geoserverjs = new GeoJS(config);
+    geoserverjs.coverageStore('sf', 'sfdem', function (err, res) {
+      if (err) throw err;
+      done();
+    })
   });
 
 });
